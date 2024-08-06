@@ -11,6 +11,7 @@ export class Calendar {
         this.setupDays();
         this.calculateCurrentWeek();
         this.showWeek();
+        this.setupControls();
     }
 
     setupTimes() {
@@ -83,5 +84,16 @@ export class Calendar {
             });
             $(`.day[data-dayIndex=${dayIndex}] .dayDisplay`).text(display);
         }
+    }
+
+    setupControls() {
+        $('#nextWeekBtn').click(() => this.changeWeek(1));
+        $('#prevWeekBtn').click(() => this.changeWeek(-1));
+    }
+
+    changeWeek(number) {
+        this.weekStart = addDays(this.weekStart, 7 * number);
+        this.weekEnd = addDays(this.weekEnd, 7 * number);
+        this.showWeek();
     }
 }
