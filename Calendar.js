@@ -4,6 +4,7 @@ export class Calendar {
     constructor() {
         this.weekStart = null;
         this.weekEnd = null;
+        this.weekOffset = 0;
     }
 
     setup() {
@@ -84,6 +85,12 @@ export class Calendar {
             });
             $(`.day[data-dayIndex=${dayIndex}] .dayDisplay`).text(display);
         }
+
+        if (this.weekOffset === 0) {
+            this.showCurrentDay();
+        } else {
+            this.hideCurrentDay;
+        }
     }
 
     setupControls() {
@@ -92,8 +99,19 @@ export class Calendar {
     }
 
     changeWeek(number) {
+        this.weekOffset += number;
         this.weekStart = addDays(this.weekStart, 7 * number);
         this.weekEnd = addDays(this.weekEnd, 7 * number);
         this.showWeek();
+    }
+
+    showCurrentDay() {
+        const now = new Date();
+        const dayIndex = getDayIndex(now);
+        $(`.day[data-dayIndex=${dayIndex}]`).addClass('currentDay');
+    }
+
+    hideCurrentDay() {
+        $('.day').removeClass('currentDay');
     }
 }

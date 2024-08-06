@@ -137,6 +137,10 @@ textarea {
     color: var(--time-color);
 }
 
+.day.currentDay .columnHeader {
+    background-color: var(--slot-hover-color);
+}
+
 /* slots */
 
 .slot {
