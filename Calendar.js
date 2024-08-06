@@ -56,11 +56,11 @@ export class Calendar {
     }
 
     hoverOver(hour) {
-        console.log('hover!', hour);
+        $(`.time[data-hour=${hour}]`).addClass('currentTime');
     }
 
     hoverOut() {
-        //todo
+        $('.time').removeClass('currentTime');
     }
 
     calculateCurrentWeek() {

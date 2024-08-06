@@ -157,6 +157,11 @@ textarea {
     font-size: 14px;
 }
 
+.time.currentTime {
+    background-color: var(--slot-hover-color);
+    color: var(--font-color);
+}
+
 .slot:hover {
     cursor: pointer;
     background-color: var(--slot-hover-color);
