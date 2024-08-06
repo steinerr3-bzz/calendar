@@ -132,6 +132,11 @@ textarea {
     border-top: 1px solid var(--grid-color);
 }
 
+.dayDisplay {
+    font-size: 15px;
+    color: var(--time-color);
+}
+
 /* slots */
 
 .slot {
