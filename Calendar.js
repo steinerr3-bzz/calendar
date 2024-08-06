@@ -6,7 +6,7 @@ export class Calendar {
     }
 
     setupTimes() {
-        const header = $('<div></div>').addClass('colummHeader');
+        const header = $('<div></div>').addClass('columnHeader');
         const slots = $('<div></div>').addClass('slots');
         for (let hour = 0; hour < 24; hour++) {
             $('<div></div>')
@@ -23,7 +23,7 @@ export class Calendar {
         $('.day').each(function () {
             const dayIndex = parseInt($(this).attr('data-dayIndex'));
             const name = $(this).attr('data-name');
-            const header = $('<div></div>').addClass('colummHeader').text(name);
+            const header = $('<div></div>').addClass('columnHeader').text(name);
             const slots = $('<div></div>').addClass('slots');
             for (let hour = 0; hour < 24; hour++) {
                 $('<div></div>')
