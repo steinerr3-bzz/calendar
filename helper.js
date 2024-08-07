@@ -13,11 +13,11 @@ export function dateString(date) {
     return `${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}`;
 }
 
-export function generateId(lenght = 20) {
+export function generateId(length = 20) {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let id = '';
-    for (let i = 0;i < lenght; i++) {
-        const rad = Math.floor(Math.random()* chars.length);
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random()* chars.length);
         id += chars.charAt(randomIndex);
     }
     return id;

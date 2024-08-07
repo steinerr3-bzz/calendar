@@ -13,9 +13,7 @@ export class Event {
 
     isValidIn(calendar) {
         //todo
+        console.log('test valid', this);
     }
 
-    updateIn(calendar) {
-        //todo
-    }
 }

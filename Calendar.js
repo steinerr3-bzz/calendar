@@ -66,25 +66,26 @@ export class Calendar {
         const start = hour.toString().padStart(2,'0') + ':00'
         const end = hour < 23 ? (hour+1).toString().padStart(2,'0') + ':00' : '23:59';
         const date = dateString(addDays(this.weekStart,dayIndex));
-        const event = new Event( {
+        const event = new Event({
             start,
             end,
             date,
             title: '',
             description: '',
             color:'red',
-        });
+        })
         this.openModal(event);
     }
 
     openModal(event) {
-        $('#modalTitle').text(this.mode === MODE.CREATE ? 'Create a new event' : 'Update your event'
+        $('#modalTitle').text(
+            this.mode === MODE.CREATE ? 'Create a new event' : 'Update your event'
         );
         $('#eventTitle').val(event.title);
         $('#eventDate').val(event.date);
         $('#eventStart').val(event.start);
         $('#eventEnd').val(event.end);
-        $('#eventTDescription').val(event.description);
+        $('#eventDescription').val(event.description);
         $('.color').removeClass('active');
         $(`.color[data-color=${event.color}]`).addClass('active');
         if (this.mode === MODE.UPDATE){
