@@ -16,4 +16,17 @@ export class Event {
         console.log('test valid', this);
     }
 
+    updateIn(calendar) {
+        this.title = $('#eventTitle').val();
+        this.start = $('#eventStart').val();
+        this.end = $('#eventEnd').val();
+        this.date = $('#eventDate').val();
+        this.description = $('eventDescription').val();
+        this.showIn(calendar);
+    }
+
+    showIn() {
+        //todo
+        console.log('show event', this);
+    }
 }
