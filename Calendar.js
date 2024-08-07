@@ -110,6 +110,13 @@ export class Calendar {
         })
     }
 
+    closeModal() {
+        $('#eventModal').fadeOut(200);
+        $('#errors').text('');
+        $('#calendar').removeClass('opaque');
+        this.mode = MODE.VIEW;
+    }
+
     hoverOver(hour) {
         $(`.time[data-hour=${hour}]`).addClass('currentTime');
     }
@@ -151,6 +158,7 @@ export class Calendar {
     setupControls() {
         $('#nextWeekBtn').click(() => this.changeWeek(1));
         $('#prevWeekBtn').click(() => this.changeWeek(-1));
+        $('#cancelButton').click(() => this.closeModal());
     }
 
     changeWeek(number) {
