@@ -159,6 +159,12 @@ export class Calendar {
         $('#nextWeekBtn').click(() => this.changeWeek(1));
         $('#prevWeekBtn').click(() => this.changeWeek(-1));
         $('#cancelButton').click(() => this.closeModal());
+        $('.color').click(this.changeColor)
+    }
+
+    changeColor() {
+        $('.color').removeClass('active');
+        $(this).addClass('active');
     }
 
     changeWeek(number) {
