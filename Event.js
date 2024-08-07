@@ -12,8 +12,26 @@ export class Event {
     }
 
     isValidIn(calendar) {
-        //todo
-        console.log('test valid', this);
+        const newStart = $('#eventStart').val();
+        const newEnd = $('#eventEnd').val();
+        const newDate = $('#eventDate').val();
+        for (const event of calendar.events) {
+            if (event.id != this.id && event.end > newStart && event.start < newEnd) {
+                $('#errors').text(`This collides with the event ${event.title} (${event.start} - ${event.end}).`);
+                return false;
+            }
+        }
+        const duration=
+            (new Date(`${newDate}T${newEnd}`).getTime() - new Date(`${newDate}T${newStart}`).getTime())/(1000*60);
+            if (duration < 0) {
+                $('#errors').text('The start cannot be after the end');
+                return false;
+            } else if (duration < 30) {
+                $('#errors').text('Events cannot be under 30 minutes.');
+                return false;
+            }
+            return true;
+
     }
 
     updateIn(calendar) {
@@ -23,10 +41,16 @@ export class Event {
         this.date = $('#eventDate').val();
         this.description = $('#eventDescription').val();
         this.showIn(calendar);
+        this.saveIn(calendar)
     }
 
     showIn() {
         //todo
         console.log('show event', this);
+    }
+
+    saveIn(calendar){
+        //todo
+        calendar.events.push(this);
     }
 }

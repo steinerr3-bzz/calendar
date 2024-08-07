@@ -12,6 +12,7 @@ export class Calendar {
         this.weekEnd = null;
         this.weekOffset = 0;
         this.mode = MODE.VIEW;
+        this.events = []
     }
 
     setup() {
