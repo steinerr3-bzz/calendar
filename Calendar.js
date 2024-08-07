@@ -66,13 +66,48 @@ export class Calendar {
         const end = hour < 23 ? (hour+1).toString().padStart(2,'0') + ':00' : '23:59';
         const date = dateString(addDays(this.weekStart,dayIndex));
         const event = {
-            start, end, date, title: '', description: '', color:'red'
+            start,
+            end,
+            date,
+            title: '', description: '',
+            color:'red',
         };
         this.openModal(event);
     }
 
     openModal(event) {
-        console.log(event);
+        $('#modalTitle').text(this.mode === MODE.CREATE ? 'Create a new event' : 'Update your event'
+        );
+        $('#eventTitle').val(event.title);
+        $('#eventDate').val(event.date);
+        $('#eventStart').val(event.start);
+        $('#eventEnd').val(event.end);
+        $('#eventTDescription').val(event.description);
+        $('.color').removeClass('active');
+        $(`.color[data-color=${event.color}]`).addClass('active');
+        if (this.mode === MODE.UPDATE){
+            $('#submitButton').val('Update');
+            $('#deleteButton').show().click(() => {
+                // todo
+                console.log('delete event', event);
+            })
+            $('#copyButton').show().click(() => {
+                // todo
+                console.log('copy event', event);
+            })
+
+        }else if (this.mode === MODE.CREATE) {
+            $('#submitButton').val('Create');
+            $('#deleteButton, #copyButton').hide();
+        }
+        $('#eventModal').fadeIn(200);
+        $('#eventTitle').focus();
+        $('#calendar').addClass('opaque');
+        $('#eventModal').submit((e) => {
+            e.preventDefault();
+            // todo
+            console.log('submit event', event)
+        })
     }
 
     hoverOver(hour) {

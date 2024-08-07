@@ -294,3 +294,8 @@ textarea {
     background-color: var(--color-orange);
 }
 
+@media (max-width: 800px) {
+    #weekDisplay {
+        display: none;
+    }
+}
