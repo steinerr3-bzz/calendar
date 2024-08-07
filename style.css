@@ -170,7 +170,7 @@ textarea {
 /* event modal */
 
 #eventModal {
-    /* display: none; */
+    display: none;
     position: absolute;
     background-color: white;
     border-radius: 10px;
