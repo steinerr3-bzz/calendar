@@ -61,7 +61,7 @@ export class Calendar {
     }
 
     clickSlot(hour, dayIndex) {
-        if (this.mode != MODE.VIEW){
+        if (this.mode !== MODE.VIEW){
             return;
         }
         this.mode = MODE.CREATE;
