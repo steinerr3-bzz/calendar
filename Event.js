@@ -6,6 +6,7 @@ export class Event {
         this.title = data.title;
         this.start = data.start;
         this.end = data.end;
+        this.prevDate = data.date;
         this.data = data.data;
         this.description = data.description;
         this.color = data.color;
@@ -15,12 +16,17 @@ export class Event {
         const newStart = $('#eventStart').val();
         const newEnd = $('#eventEnd').val();
         const newDate = $('#eventDate').val();
-        for (const event of calendar.events) {
-            if (event.id != this.id && event.end > newStart && event.start < newEnd) {
-                $('#errors').text(`This collides with the event ${event.title} (${event.start} - ${event.end}).`);
-                return false;
+        if (calendar.events[newDate]) {
+            const event = Object.values(calendar.events[newDate]).find(event => {
+                event.id !== this.id && event.end > newStart && event.start < newEnd;
+            });
+            if (event) {
+                $('#errors').text(`This collides with the event ${event.title} (${event.start} - ${event.end}).`
+                );
+                    return false;
             }
         }
+
         const duration=
             (new Date(`${newDate}T${newEnd}`).getTime() - new Date(`${newDate}T${newStart}`).getTime())/(1000*60);
             if (duration < 0) {
@@ -38,8 +44,10 @@ export class Event {
         this.title = $('#eventTitle').val();
         this.start = $('#eventStart').val();
         this.end = $('#eventEnd').val();
+        this.prevDate = this.date;
         this.date = $('#eventDate').val();
         this.description = $('#eventDescription').val();
+        this.color = $('.color.active').attr('data-color');
         this.showIn(calendar);
         this.saveIn(calendar)
     }
@@ -50,7 +58,16 @@ export class Event {
     }
 
     saveIn(calendar){
-        //todo
-        calendar.events.push(this);
+        if (this.prevDate && this.date != this.prevDate) {
+            delete calendar.events[this.prevDate][this.id];
+            if (Object.values(calendar.events[this.prevDate]).length === 0) {
+                delete calendar.events[this.prevDate];
+            }
+        }
+        if (!calendar.events[this.date]) {
+            calendar.events[this.date] = {};
+        }
+        calendar.events[this.date][this.id] = this;
+        console.log(calendar.events);
     }
 }

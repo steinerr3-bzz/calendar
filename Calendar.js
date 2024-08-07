@@ -12,7 +12,8 @@ export class Calendar {
         this.weekEnd = null;
         this.weekOffset = 0;
         this.mode = MODE.VIEW;
-        this.events = []
+        this.events = {};
+
     }
 
     setup() {
@@ -91,11 +92,15 @@ export class Calendar {
         $(`.color[data-color=${event.color}]`).addClass('active');
         if (this.mode === MODE.UPDATE){
             $('#submitButton').val('Update');
-            $('#deleteButton').show().click(() => {
+            $('#deleteButton')
+                .show().off('click')
+                .click(() => {
                 // todo
                 console.log('delete event', event);
             })
-            $('#copyButton').show().click(() => {
+            $('#copyButton').off('click')
+                .show()
+                .click(() => {
                 // todo
                 console.log('copy event', event);
             })
@@ -107,11 +112,12 @@ export class Calendar {
         $('#eventModal').fadeIn(200);
         $('#eventTitle').focus();
         $('#calendar').addClass('opaque');
-        $('#eventModal').submit((e) => {
-            e.preventDefault();
-            this.submitModal(event);
-            console.log('submit event', event)
-        })
+        $('#eventModal')
+            .off('submit')
+            .submit((e) => {
+                e.preventDefault();
+                this.submitModal(event);
+        });
     }
 
     closeModal() {
