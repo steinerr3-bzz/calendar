@@ -1,10 +1,10 @@
 /* general stuff */
 
-:root{
+:root {
     --grid-color: #cecece;
     --time-color: #777;
-    --slot-hover-color:#eee;
-    --shadow-color: rgba(0,0,0,0.3);
+    --slot-hover-color: #eee;
+    --shadow-color: rgba(0, 0, 0, 0.3);
     --font-color: #222;
     --color-red: rgb(190, 35, 15);
     --color-blue: rgb(54, 92, 175);
@@ -19,8 +19,8 @@
     padding: 0;
 }
 
-body{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     color: var(--font-color);
 }
 
@@ -34,7 +34,6 @@ textarea {
 
 /* header */
 
-
 .header {
     text-align: center;
     padding: 20px 10px;
@@ -44,7 +43,7 @@ textarea {
     justify-content: center;
 }
 
-.header h1{
+.header h1 {
     color: var(--color-blue);
     font-weight: 400;
 }
@@ -128,8 +127,12 @@ textarea {
     overflow: hidden;
 }
 
-.day .columnHeader{
+.day .columnHeader {
     border-top: 1px solid var(--grid-color);
+}
+
+.day.currentDay .columnHeader {
+    background: var(--slot-hover-color);
 }
 
 .dayDisplay {
@@ -137,18 +140,14 @@ textarea {
     color: var(--time-color);
 }
 
-.day.currentDay .columnHeader {
-    background-color: var(--slot-hover-color);
-}
-
 /* slots */
 
-.slot {
+.slots {
     position: relative;
 }
 
 .slot,
-.time{
+.time {
     border-top: 1px solid var(--grid-color);
     height: var(--slotHeight);
 }
@@ -157,27 +156,51 @@ textarea {
     font-size: 14px;
 }
 
+.slot:hover {
+    cursor: pointer;
+    background-color: var(--slot-hover-color);
+}
+
 .time.currentTime {
     background-color: var(--slot-hover-color);
     color: var(--font-color);
 }
 
-.slot:hover {
+/* events */
+
+.event {
+    position: absolute;
+    left: 1px;
+    width: calc(100% - 2px);
+    border-radius: 4px;
+    padding: 2px 5px;
+    color: white;
+    overflow: hidden;
     cursor: pointer;
-    background-color: var(--slot-hover-color);
+}
+
+.shortEvent {
+    padding: 0px 5px;
+    font-size: 12px;
+}
+
+.veryShortEvent {
+    margin-top: -1px;
+    padding: 0px 5px;
+    font-size: 10px;
 }
 
 /* event modal */
 
 #eventModal {
     display: none;
-    position: absolute;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 0px 20px var(--shadow-color);
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
+    position: absolute;
     z-index: 10;
     padding: 20px;
     width: 450px;
@@ -192,7 +215,7 @@ textarea {
     margin-bottom: 20px;
 }
 
-.descriptor {
+#eventModal label {
     font-weight: bold;
     display: inline-block;
     margin: 20px 10px 5px 0px;
@@ -208,7 +231,7 @@ textarea {
 }
 
 #eventTitle {
-    width: 95%;
+    width: 95% !important;
 }
 
 #eventStart {
@@ -221,10 +244,10 @@ textarea {
 
 #eventDescription {
     border: 1px solid var(--grid-color);
-    width: 95%;
+    width: 95% !important;
     height: 170px;
-    resize: vertical;
     min-height: 40px;
+    resize: vertical;
     padding: 4px;
 }
 
@@ -242,6 +265,11 @@ textarea {
     color: white;
     cursor: pointer;
     margin-right: 12px;
+    border-radius: 2px;
+}
+
+#deleteButton {
+    background-color: var(--color-red);
 }
 
 .button:hover,
@@ -249,23 +277,19 @@ textarea {
     opacity: 0.8;
 }
 
-#deleteButton {
-    background-color: var(--color-red);
-}
-
-/* colors */
+/* colors in event modal */
 
 #colors {
-    width: 150px;
     height: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 150px;
 }
 
 .color {
-    width: 20px;
-    height: 20px;
+    width: 20px !important;
+    height: 20px !important;
     border-radius: 50%;
     border: 5px solid white;
     box-sizing: content-box;

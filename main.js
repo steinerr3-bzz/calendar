@@ -1,11 +1,5 @@
-import {Calendar} from './Calendar.js';
+import { Calendar } from "./Calendar.js";
 
 $(() => {
     new Calendar().setup();
-
 });
-
-
-
-
-
